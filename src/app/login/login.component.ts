@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../http-client.service';
@@ -8,38 +8,45 @@ import { HttpClientService } from '../http-client.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loginForms!:FormGroup;
-  successMessage!:string;
-  errorMessage!:string;
+export class LoginComponent implements OnInit {
+  loginForms!: FormGroup;
+  successMessage!: string;
+  errorMessage!: string;
+  userId!: any;
 
+  constructor(private fb: FormBuilder, private router: Router, private service: HttpClientService) {}
 
-  constructor(private fb:FormBuilder,private router:Router,private service:HttpClientService){};
-  ngOnInit(){
+  ngOnInit(): void {
     this.loginForms = this.fb.group({
-      username:['',[Validators.required,Validators.pattern(/^[a-zA-z0-9]+$/)]],
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9&%$^@]{8,}$/)
-]]
+      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9&%$^@]{8,}$/)]]
     });
   }
 
-  userId:any;
-  submit(){
-    if(this.loginForms.valid && this.loginForms.touched){
+  submit(): void {
+    if (this.loginForms.valid && !this.loginForms.pristine) {
       this.service.getUserByEmail(this.loginForms.value.email).subscribe(
-        (s)=>{this.userId=s.id
-          this.successMessage="Login Successfull"
-          if(this.userId != null){
-            this.router.navigate(['/dashbaord',this.userId]);
+        (users: any[]) => {
+          if (users.length > 0) {
+            const user = users[0];
+            this.userId = user.id;
+            this.successMessage=user.fullname;
+            this.errorMessage = '';
+            setTimeout(() => {
+              this.router.navigate(['/dashboard', this.userId]);
+            }, 1000);
+          } else {
+            this.errorMessage = 'Invalid Credentials';
+            this.successMessage = '';
           }
         },
-        (e)=>{
-          this.errorMessage="Invalid Credientials";
-          console.log("Unable to fetch the ID");
+        (err) => {
+          this.errorMessage = 'Unable to fetch data from backend';
+          this.successMessage = '';
+          console.error(err);
         }
-      )
+      );
     }
-
   }
 }

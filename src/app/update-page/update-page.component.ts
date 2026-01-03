@@ -22,7 +22,6 @@ export class UpdatePageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // Get both params from URL
     this.route.params.subscribe(params => {
       this.currentUserId = params['currentUserId'];
       this.userId = params['userId'];
@@ -30,7 +29,6 @@ export class UpdatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialize form
     this.updateForm = this.fb.group({
       fullname: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(5)]],
@@ -40,7 +38,6 @@ export class UpdatePageComponent implements OnInit {
       gender: ['', Validators.required]
     });
 
-    // Prefill form with existing user data
     if (this.userId) {
       this.service.getUserByid(this.userId).subscribe(
         (user: any) => this.updateForm.patchValue(user),
