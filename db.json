@@ -1,0 +1,85 @@
+{
+  "userData": [
+    {
+      "id": 4,
+      "fullname": "Arman Sahanee",
+      "username": "sahanee1",
+      "email": "sahaneearman601@gmail.com",
+      "password": "@saahnee",
+      "age": 20,
+      "gender": "Male"
+    },
+    {
+      "fullname": "Amit reddy",
+      "username": "priyar",
+      "email": "priya.reddy@example.com",
+      "password": "Priya@321",
+      "age": 28,
+      "gender": "Others",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "fullname": "Siddharth Mehra",
+      "username": "siddharthm",
+      "email": "siddharth.mehra@example.com",
+      "password": "Siddh@654",
+      "age": 30,
+      "gender": "Male"
+    },
+    {
+      "id": 7,
+      "fullname": "Ananya Gupta",
+      "username": "ananyag",
+      "email": "ananya.gupta@example.com",
+      "password": "Ananya@987",
+      "age": 25,
+      "gender": "Female"
+    },
+    {
+      "id": 8,
+      "fullname": "Karan Singh",
+      "username": "karans",
+      "email": "karan.singh@example.com",
+      "password": "Karan@123",
+      "age": 27,
+      "gender": "Male"
+    },
+    {
+      "id": 10,
+      "fullname": "Arman Sah",
+      "username": "sahanee1",
+      "email": "sahiraali123@gmail.com",
+      "password": "@saahnee",
+      "age": 22,
+      "gender": "Male"
+    },
+    {
+      "fullname": "Arman Sah",
+      "username": "sahanee1",
+      "email": "sahiraali123@gmail.com",
+      "password": "@saahnee",
+      "age": 18,
+      "gender": "Others",
+      "id": 11
+    },
+    {
+      "fullname": "Amit Sah",
+      "username": "sahanee1",
+      "email": "sahiraali123@gmail.com",
+      "password": "@saahnee",
+      "age": 18,
+      "gender": "Female",
+      "id": 12
+    },
+    {
+      "id": 9,
+      "fullname": "Sahira li",
+      "username": "sahia",
+      "email": "sahia@gmail.com",
+      "password": "@saahnee",
+      "age": 24,
+      "gender": "female"
+    }
+  ]
+}

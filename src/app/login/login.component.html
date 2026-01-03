@@ -1,1 +1,84 @@
-<p>login works!</p>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form
+    [formGroup]="loginForms"
+    (ngSubmit)="submit()"
+    class="form w-25 border border-2 border-primary p-5 rounded"
+  >
+    <h1 class="mb-4 text-center">Login</h1>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="inputName"
+        placeholder="Enter your user name"
+        required
+        formControlName="username"
+      />
+      <label for="inputName">Username</label>
+      <span
+      
+        *ngIf="
+          loginForms.controls['username'].invalid &&
+          loginForms.controls['username'].dirty
+        "
+        class="text-danger"
+        >Enter a valid Username</span
+      >
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="Email"
+        placeholder="Enter your Email"
+        formControlName="email"
+        required
+      />
+      <label for="Email">Email</label>
+      <span
+        *ngIf="
+          loginForms.controls['email'].invalid &&
+          loginForms.controls['email'].dirty
+        "
+        class="text-danger"
+        >Enter a valid Email</span
+      >
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        required
+        id="inputPassword"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+      <label for="inputPassword">Password</label>
+      <span
+        *ngIf="
+          loginForms.controls['password'].invalid &&
+          loginForms.controls['password'].dirty
+        "
+        class="text-danger"
+        >It is a required Field</span
+      >
+    </div>
+
+    <button
+      [disabled]="this.loginForms.invalid || this.loginForms.pristine"
+      type="submit"
+      class="btn btn-primary w-100"
+    >
+      Login
+    </button>
+    <p>Don't have an account? <a class="text-success" href="/register"> Register</a></p>
+  </form>
+
+  <div *ngIf="successMessage" class="text-center">
+    {{ successMessage | successPipe }}
+  </div>
+  <div *ngIf="errorMessage" class="text-center">{{ errorMessage }}</div>
+</div>

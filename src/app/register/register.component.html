@@ -1,1 +1,213 @@
-<p>register works!</p>
+<div
+  class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-light"
+>
+  <div class="col-12 col-md-8 col-lg-5">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="AddUsers()"
+      class="card border-primary shadow-lg p-4"
+    >
+      <h4 class="text-center mb-4 text-primary fw-bold">Register</h4>
+
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label for="fullname" class="form-label">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fullname"
+          placeholder="Enter your full name"
+          formControlName="fullname"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['fullname'].invalid &&
+            registerForm.controls['fullname'].dirty
+          "
+        >
+          Enter a valid fullname
+        </small>
+      </div>
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Enter your username"
+          formControlName="username"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['username'].invalid &&
+            registerForm.controls['username'].dirty
+          "
+        >
+          Enter a valid username
+        </small>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter your email"
+          formControlName="email"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['email'].invalid &&
+            registerForm.controls['email'].dirty
+          "
+        >
+          Enter a valid email
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Enter your password"
+          formControlName="password"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['password'].invalid &&
+            registerForm.controls['password'].dirty
+          "
+        >
+          Enter a password
+        </small>
+      </div>
+
+      <!-- Age -->
+      <div class="mb-4">
+        <label class="form-label d-flex justify-content-between">
+          <span>Age</span>
+          <span class="fw-semibold text-primary">
+            {{ registerForm.controls["age"].value }}
+          </span>
+        </label>
+
+        <input type="range" class="form-range" max="60" formControlName="age" />
+
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['age'].invalid &&
+            registerForm.controls['age'].dirty
+          "
+        >
+          Enter a valid range value
+        </small>
+      </div>
+
+      <!-- Gender -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Gender</label>
+
+        <div class="d-flex gap-4">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Male"
+              formControlName="gender"
+            />
+            <label class="form-check-label">Male</label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="female"
+              formControlName="gender"
+            />
+            <label class="form-check-label">Female</label>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="others"
+              formControlName="gender"
+            />
+            <label class="form-check-label">Others</label>
+          </div>
+        </div>
+
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['gender'].invalid &&
+            registerForm.controls['gender'].touched
+          "
+        >
+          Gender is required
+        </small>
+      </div>
+
+      <div class="mb-4">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            formControlName="privacyConcerns"
+          />
+          <label class="form-check-label">
+            I am accepting all the privacy and concerns
+          </label>
+        </div>
+
+        <small
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['privacyConcerns'].invalid &&
+            registerForm.controls['privacyConcerns'].dirty
+          "
+        >
+          Without accepting the privacy concerns you cannot register
+        </small>
+      </div>
+
+      <div class="d-grid mb-3">
+        <button
+          [disabled]="registerForm.invalid || registerForm.pristine"
+          type="submit"
+          class="btn btn-primary btn-lg"
+        >
+          Register
+        </button>
+      </div>
+
+      <p class="text-center mb-0">
+        Already have an account?
+        <a href="/login" class="fw-semibold">Login</a>
+      </p>
+    </form>
+
+    <div class="text-center mt-3">
+      <div class="text-success" *ngIf="successMessage">
+        {{ successMessage | successPipe }}
+      </div>
+      <div class="text-danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>
