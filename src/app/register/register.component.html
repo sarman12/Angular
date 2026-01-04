@@ -64,12 +64,33 @@
         <small
           class="text-danger"
           *ngIf="
-            registerForm.controls['email'].invalid &&
+            this.registerForm.controls['email'].invalid &&
             registerForm.controls['email'].dirty
           "
         >
           Enter a valid email
         </small>
+      </div>
+      <!-- course -->
+      <div class="form-group">
+        <label for="course" class="form-group">Course Option</label>
+        <select class="form-control" id="course" formControlName="course">
+          <option value="">Choose one of the course</option>
+          <option
+            *ngFor="let i of courseDetails"
+            value="{{ i | tranformCourse }}"
+          >
+            {{ i | tranformCourse }}
+          </option>
+        </select>
+        <span
+          class="text-danger"
+          *ngIf="
+            registerForm.controls['course'].invalid &&
+            registerForm.controls['course'].dirty
+          "
+          >Enter as many as data you want</span
+        >
       </div>
 
       <!-- Password -->
@@ -115,7 +136,52 @@
         </small>
       </div>
 
-      <!-- Gender -->
+      <fieldset formGroupName="address" class="mb-3 p-3 border rounded">
+        <legend class="fw-semibold">Address</legend>
+
+        <div class="mb-2">
+          <label class="form-label">Street</label>
+          <input type="text" class="form-control" formControlName="street" />
+          <small
+            class="text-danger"
+            *ngIf="
+              registerForm.get('address.street')?.invalid &&
+              registerForm.get('address.street')?.touched
+            "
+          >
+            Street is required
+          </small>
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">City</label>
+          <input type="text" class="form-control" formControlName="city" />
+          <small
+            class="text-danger"
+            *ngIf="
+              registerForm.get('address.city')?.invalid &&
+              registerForm.get('address.city')?.touched
+            "
+          >
+            City is required
+          </small>
+        </div>
+
+        <div>
+          <label class="form-label">Pincode</label>
+          <input type="text" class="form-control" formControlName="pincode" />
+          <small
+            class="text-danger"
+            *ngIf="
+              registerForm.get('address.pincode')?.invalid &&
+              registerForm.get('address.pincode')?.touched
+            "
+          >
+            Enter a valid 6-digit pincode
+          </small>
+        </div>
+      </fieldset>
+
       <div class="mb-4">
         <label class="form-label fw-semibold">Gender</label>
 

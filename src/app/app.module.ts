@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessPipePipe } from './login/success-pipe.pipe';
 import { UpdatePageComponent } from './update-page/update-page.component';
 import { SortPipePipe } from './dashboard/sort-pipe.pipe';
+import { TranformCoursePipe } from './register/tranform-course.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { SortPipePipe } from './dashboard/sort-pipe.pipe';
     DashboardComponent,
     SuccessPipePipe,
     UpdatePageComponent,
-    SortPipePipe
+    SortPipePipe,
+    TranformCoursePipe
   ],
   imports: [
     BrowserModule,
